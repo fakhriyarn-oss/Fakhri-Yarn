@@ -1156,12 +1156,10 @@ button { font-family: inherit; cursor: pointer; }
   .team-grid { grid-template-columns: 1fr; max-width: 300px; gap: 32px; }
   /* Single column: all four stack in rank order (spans reset). */
   .team-card:nth-child(n) { grid-column: auto; grid-row: auto; }
-  .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
-  /* Theirs drops to 220px here, but our brand-chip lists run longer
-     (Plastic Niwar carries 11) — measured against the real 2-column
-     width at a 375px phone. With the in-house badge now in normal flow
-     (it adds a row on badged cards), Plastic Niwar's card needs ~386px;
-     400px keeps a safety margin so every chip stays visible. */
+  /* One card per row on phones: at 2-up the cards were too narrow and
+     the product photo (on the flipped back) read as a thin sliver.
+     Full-width cards give the photo a proper, visible size. */
+  .catalog-grid { grid-template-columns: 1fr; gap: 22px; align-items: start; }
   .ccard { height: 400px; }
   .band-cards { grid-template-columns: 1fr; }
   .addr-grid { grid-template-columns: 1fr; }
