@@ -1,0 +1,1158 @@
+/* ═══════════ FAKHRI YARN — Design System ═══════════ */
+:root {
+  /* Palette: c5d1eb · 92afd7 · 5a7684 · 395b50 · 1f2f16 */
+  --paper: #EDF2FA;        /* page surface — light tint of c5d1eb */
+  --ink: #1F2F16;          /* darkest — headings, dark bands, footer */
+  --terra: #395B50;        /* primary accent */
+  --terra-deep: #2A463C;   /* accent hover */
+  --sand: #D6E0F0;         /* alternate section surface */
+  --sky: #C5D1EB;          /* icon tiles, chips, decorative fills */
+  --steel: #92AFD7;        /* secondary accent, highlights on dark */
+  --slate: #5A7684;        /* secondary/decorative text */
+  --muted: #45606C;        /* body text — deepened slate for readability */
+  --line: rgba(31, 47, 22, 0.14);
+  --cream: #EDF2FA;
+  --wa: #1EA952;
+  --wa-deep: #17843F;
+  --serif: 'Cormorant Garamond', 'Noto Serif Devanagari', 'Noto Serif Gujarati', serif;
+  --sans: 'Source Sans 3', 'Hind', 'Mukta Vaani', system-ui, sans-serif;
+  --shadow-lg: 0 24px 60px -24px rgba(31, 47, 22, 0.35);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* Consistent keyboard-focus ring across every primary interactive
+   element — nav links/buttons, tabs, language pills and CTAs previously
+   fell back to the browser's own default outline (inconsistent, and
+   sometimes invisible against a dark hero). Cards/rail already had
+   their own matching ring; this extends the same treatment everywhere
+   else so focus is never a guessing game. */
+.ihb:focus-visible, .tab:focus-visible, .lang-pill:focus-visible,
+.nav-link:focus-visible, .nav-burger:focus-visible, .btn:focus-visible,
+.rail-btn:focus-visible, .footer-col a:focus-visible {
+  outline: 3px solid var(--terra); outline-offset: 3px;
+}
+.hero2 :focus-visible { outline-color: var(--sky); }
+
+/* Skip-to-content: invisible until keyboard-focused, then drops in as
+   a solid bar above everything (z above the nav + modals). */
+.skip-link {
+  position: fixed; top: 10px; left: 10px; z-index: 400;
+  background: var(--ink); color: var(--cream);
+  padding: 12px 22px; border-radius: 10px;
+  font-weight: 600; font-size: 14.5px;
+  transform: translateY(-200%); transition: transform 0.25s var(--ease);
+}
+.skip-link:focus-visible { transform: translateY(0); outline: 3px solid var(--steel); outline-offset: 2px; }
+
+.wrap { max-width: 1120px; margin-inline: auto; padding-inline: 32px; }
+.section { padding-block: 110px; }
+.hidden { display: none !important; }
+
+/* ── Typography ── */
+.eyebrow {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--terra); margin-bottom: 14px;
+}
+.eyebrow-light { color: rgba(237, 242, 250, 0.72); }
+.heading {
+  font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 4.2vw, 46px);
+  line-height: 1.12; letter-spacing: -0.005em; text-wrap: balance; margin-bottom: 20px;
+}
+.heading-light { color: var(--cream); }
+.body { color: var(--muted); font-size: 17px; max-width: 640px; text-wrap: pretty; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 26px; border-radius: 10px; border: none;
+  font-size: 15px; font-weight: 600; line-height: 1.2;
+  touch-action: manipulation;
+  transition: transform 0.3s var(--ease), background 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.97); }
+.btn-primary { background: var(--terra); color: var(--cream); }
+.btn-primary:hover { background: var(--terra-deep); box-shadow: 0 12px 28px -12px rgba(57, 91, 80, 0.6); }
+.btn-ghost {
+  background: rgba(237, 242, 250, 0.08); color: var(--cream);
+  border: 1px solid rgba(237, 242, 250, 0.45);
+}
+.btn-ghost:hover { background: rgba(237, 242, 250, 0.18); }
+.btn-lg { padding: 16px 30px; font-size: 16px; }
+.btn-wa { background: var(--wa); color: #fff; flex: 1; justify-content: center; }
+.btn-wa:hover { background: var(--wa-deep); box-shadow: 0 12px 28px -12px rgba(30, 169, 82, 0.55); }
+.btn-email { background: transparent; color: var(--ink); border: 1px solid rgba(31, 47, 22, 0.3); flex: 1; justify-content: center; }
+.btn-email:hover { background: rgba(31, 47, 22, 0.06); }
+
+/* ── Navigation ── */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(237, 242, 250, 0.88);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s, background 0.3s;
+}
+.nav.scrolled {
+  box-shadow: 0 8px 30px -18px rgba(31, 47, 22, 0.35);
+  background: rgba(237, 242, 250, 0.72);
+  backdrop-filter: blur(18px) saturate(1.6); -webkit-backdrop-filter: blur(18px) saturate(1.6);
+}
+.nav-row {
+  max-width: 1120px; margin-inline: auto; padding: 12px 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.brand-name { font-family: var(--serif); font-weight: 700; font-size: 26px; line-height: 1; }
+.brand-name.light { color: var(--cream); }
+.nav-links { display: flex; gap: 8px; }
+.nav-link {
+  font-size: 15px; font-weight: 500; color: var(--muted);
+  position: relative; transition: color 0.25s;
+}
+.nav-link::after {
+  content: ''; position: absolute; inset-inline-start: 0; bottom: -6px;
+  width: 100%; height: 2px; background: var(--terra);
+  transform: scaleX(0); transform-origin: 0 50%; transition: transform 0.3s var(--ease);
+}
+.nav-link:hover, .nav-link.active { color: var(--terra); }
+.nav-link:hover::after, .nav-link.active::after { transform: scaleX(1); }
+
+/* Interactive hover button (nav tabs): text slides out, arrow slides in, dot grows to fill */
+.ihb {
+  position: relative; overflow: hidden; display: inline-block;
+  border: 1px solid var(--line); border-radius: 100px;
+  padding: 10px 28px; text-align: center; min-width: 120px;
+  touch-action: manipulation;
+  font-size: 14.5px; font-weight: 600; color: var(--muted);
+  background: transparent; cursor: pointer;
+  transition: border-color 0.3s, color 0.3s;
+}
+.ihb-text {
+  position: relative; z-index: 2; display: inline-block;
+  transform: translateX(2px);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.ihb:hover .ihb-text { transform: translateX(48px); opacity: 0; }
+.ihb-hover {
+  position: absolute; inset: 0; z-index: 3;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  color: var(--cream); opacity: 0; transform: translateX(48px);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.ihb:hover .ihb-hover { opacity: 1; transform: translateX(-2px); }
+.ihb-arrow { flex-shrink: 0; }
+.ihb-dot {
+  position: absolute; z-index: 1; left: 13%; top: 40%;
+  width: 7px; height: 7px; border-radius: 8px; background: var(--terra);
+  transition: all 0.3s var(--ease);
+}
+.ihb:hover .ihb-dot { left: 0; top: 0; width: 100%; height: 100%; transform: scale(1.8); }
+.ihb.active { border-color: var(--terra); color: var(--terra); }
+.ihb-cta { background: var(--terra); border-color: var(--terra); color: var(--cream); }
+.ihb-cta .ihb-dot { background: var(--ink); }
+.nav-actions { display: flex; align-items: center; gap: 14px; }
+.nav-cta { padding: 11px 20px; }
+
+/* Language pills — reference-style compact toggle */
+.lang-pills {
+  display: flex; gap: 4px; padding: 4px;
+  background: rgba(31, 47, 22, 0.06);
+  border: 1px solid var(--line); border-radius: 100px;
+}
+.lang-pill {
+  border: none; background: transparent; color: var(--muted);
+  font-size: 13px; font-weight: 600; line-height: 1;
+  /* 44px minimum touch target (was 38×27) — the pill's printed shape stays
+     small and compact, min-height/min-width just pad the tappable area. */
+  padding: 16px 15px; min-width: 44px; min-height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 100px; touch-action: manipulation;
+  transition: background 0.3s, color 0.3s, transform 0.2s;
+}
+.lang-pill:hover { color: var(--ink); transform: translateY(-1px); }
+.lang-pill.active { background: var(--ink); color: var(--cream); }
+
+.nav-burger { display: none; background: none; border: none; flex-direction: column; gap: 5px; padding: 14px 11px; touch-action: manipulation; }
+.nav-burger span { width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+.nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* Mobile menu: a full-screen glass overlay (not the desktop nav
+   squeezed into a dropdown) — big serif links entering with a small
+   stagger. Sits at z-49, one below the nav bar, so the burger stays
+   visible and tappable on top of it. */
+.nav-mobile {
+  display: none; position: fixed; inset: 0; z-index: 49;
+  flex-direction: column; justify-content: center; gap: 6px;
+  padding: 100px 40px 60px;
+  background: rgba(237, 242, 250, 0.92);
+  backdrop-filter: blur(22px) saturate(1.4); -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.nav-mobile.open { opacity: 1; pointer-events: all; }
+.nav-mobile .nav-link {
+  font-family: var(--serif); font-size: 34px; font-weight: 600; color: var(--ink);
+  padding: 12px 0; width: max-content;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), color 0.25s;
+}
+.nav-mobile.open .nav-link { opacity: 1; transform: none; }
+.nav-mobile.open .nav-link:nth-child(1) { transition-delay: 0.05s; }
+.nav-mobile.open .nav-link:nth-child(2) { transition-delay: 0.11s; }
+.nav-mobile.open .nav-link:nth-child(3) { transition-delay: 0.17s; }
+.nav-mobile.open .nav-link:nth-child(4) { transition-delay: 0.23s; }
+
+/* ═══════════ HERO: floating shapes ═══════════
+   Adapted from a dark/abstract-blob React hero. Ported to plain CSS —
+   the source animations are just an entrance (fade+rise+rotate) and an
+   infinite bob, neither needs Framer Motion or a scroll library. Shape
+   colours are the site's own accents (terra/steel/sky/slate), not the
+   source's indigo/rose/violet, so it reads as this brand, not a demo. */
+.hero2 {
+  position: relative; min-height: 92vh; width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--ink); color: var(--cream);
+  padding-block: 140px 90px;
+}
+.hero2-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(60% 50% at 50% 40%, rgba(146, 175, 215, 0.14) 0%, transparent 70%);
+  filter: blur(40px);
+}
+
+/* Floating blobs: outer element handles the one-time entrance
+   (fade + rise + rotate-in), inner element handles the endless bob —
+   splitting them across two nested elements avoids the transforms fighting. */
+.hero2-shapes { position: absolute; inset: 0; overflow: hidden; }
+.shape {
+  position: absolute; opacity: 0;
+  animation: shapeIn 2.2s cubic-bezier(0.23, 0.86, 0.39, 0.96) forwards;
+  animation-delay: var(--d, 0s);
+}
+.shape-float { animation: shapeBob 12s ease-in-out infinite; animation-delay: var(--d, 0s); }
+/* Coils of rope, not abstract blobs — same twisted-strand language as
+   the .tex-laid product cards, so the hero and the catalogue read as
+   one idea. Capsule shape (short height, full-round ends) already
+   reads as a length of rope; the texture confirms it. */
+.shape-blob {
+  position: relative; width: 100%; height: 100%; border-radius: 100px;
+  border: 2px solid rgba(237, 242, 250, 0.16); overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), inset 0 2px 3px rgba(255, 255, 255, 0.1), inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+}
+.shape-blob::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(28deg,
+    rgba(237, 242, 250, 0.2) 0 3px,
+    rgba(237, 242, 250, 0.06) 3px 9px,
+    transparent 9px 11px,
+    rgba(0, 0, 0, 0.22) 11px 16px);
+}
+.shape-blob::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, transparent 32%, transparent 68%, rgba(0, 0, 0, 0.16) 100%);
+}
+@keyframes shapeIn {
+  from { opacity: 0; transform: translateY(-150px) rotate(var(--rot-from, -15deg)); }
+  12%  { opacity: 1; }
+  to   { opacity: 1; transform: translateY(0) rotate(var(--rot-to, 0deg)); }
+}
+@keyframes shapeBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(15px); }
+}
+.shape-1 { --d: 0.3s; --rot-to: 12deg; --rot-from: -3deg; width: 460px; height: 120px; left: -8%; top: 16%; }
+.shape-1 .shape-blob { background: linear-gradient(90deg, rgba(57, 91, 80, 0.55), rgba(57, 91, 80, 0.18)); }
+.shape-2 { --d: 0.5s; --rot-to: -15deg; --rot-from: -30deg; width: 380px; height: 100px; right: -4%; top: 68%; }
+.shape-2 .shape-blob { background: linear-gradient(90deg, rgba(146, 175, 215, 0.5), rgba(146, 175, 215, 0.16)); }
+.shape-3 { --d: 0.4s; --rot-to: -8deg; --rot-from: -23deg; width: 230px; height: 64px; left: 7%; bottom: 8%; }
+.shape-3 .shape-blob { background: linear-gradient(90deg, rgba(90, 118, 132, 0.55), rgba(90, 118, 132, 0.18)); }
+.shape-4 { --d: 0.6s; --rot-to: 20deg; --rot-from: 5deg; width: 160px; height: 46px; right: 16%; top: 12%; }
+.shape-4 .shape-blob { background: linear-gradient(90deg, rgba(197, 209, 235, 0.5), rgba(197, 209, 235, 0.16)); }
+.shape-5 { --d: 0.7s; --rot-to: -25deg; --rot-from: -40deg; width: 120px; height: 32px; left: 22%; top: 7%; }
+.shape-5 .shape-blob { background: linear-gradient(90deg, rgba(237, 242, 250, 0.45), rgba(237, 242, 250, 0.14)); }
+
+.hero2-content {
+  position: relative; z-index: 10; max-width: 760px; width: 100%;
+  margin-inline: auto; padding-inline: 24px; text-align: center;
+}
+.reveal2 {
+  opacity: 0; transform: translateY(28px);
+  animation: reveal2In 1s cubic-bezier(0.25, 0.4, 0.25, 1) forwards;
+  animation-delay: calc(var(--d, 0s) + 0.35s);
+}
+@keyframes reveal2In { to { opacity: 1; transform: translateY(0); } }
+.hero2-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 9px 16px; border-radius: 100px; margin-bottom: 28px;
+  background: rgba(237, 242, 250, 0.05); border: 1px solid rgba(237, 242, 250, 0.14);
+  font-size: 13.5px; font-weight: 500; letter-spacing: 0.02em;
+  color: rgba(237, 242, 250, 0.72);
+}
+.hero2-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--steel); flex-shrink: 0; }
+.hero2-title {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.015em;
+  line-height: 1.08; margin-bottom: 26px;
+}
+.hero2-t1 {
+  display: inline-block; font-size: clamp(40px, 7.5vw, 84px); font-weight: 700;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(237, 242, 250, 0.75) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  transform: translateZ(0);
+}
+.hero2-t2 {
+  display: inline-block; margin-top: 48px; font-size: clamp(28px, 4.6vw, 50px); font-weight: 600;
+  background: linear-gradient(90deg, var(--steel) 0%, rgba(237, 242, 250, 0.92) 50%, var(--sky) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  transform: translateZ(0);
+}
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .hero2-t1, .hero2-t2 { -webkit-text-fill-color: #fff; color: #fff; background: none; }
+}
+
+/* Signature moment: two rope ends lie across "Fakhri Yarn", covering it
+   completely at rest, then get pulled apart off-screen — the name is
+   revealed the way pulling a rope taut reveals what was behind it.
+   The brand text underneath is fully painted from the start; the ropes
+   are the only thing doing the "revealing". */
+.hero2-brand-wrap { position: relative; display: inline-block; }
+.rope-pull {
+  /* width 515% ≈ the photo's native 1983px at desktop wrap width — the
+     cord renders at ~1:1 scale and spans clear past both screen edges.
+     The bar's box is mostly transparent photo margin; only a ~40px-tall
+     cord band (at 53% of the image height) is actually visible, so the
+     box may overlap neighbouring text freely without visual collision. */
+  /* top: calc(100% + …) parks the cord in the gap BETWEEN the brand
+     name and the tagline (was top:50%, lying across the name itself). */
+  position: absolute; top: calc(100% + 24px); height: 132%; width: 515%;
+  transform: translateY(-50%);
+  z-index: 5; pointer-events: none; will-change: transform, opacity;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45));
+  /* A slow, level slide clear off the viewport (vw units, not %, so it
+     actually leaves the screen regardless of the wrap's own width).
+     Only this animation is meant to be slow — badge/tagline/sub/buttons
+     run on their own quick, independent timing and don't wait for it. */
+  animation-duration: 5s; animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards; animation-delay: 0.5s;
+}
+/* assets/rope-keyed.png ships with the white backdrop already keyed to
+   alpha (ffmpeg colorkey at build time) — no runtime canvas processing,
+   so the first paint is already transparent and there is no white flash.
+   object-position 53% vertical centres the cord band on the text line;
+   cover scales by width (bar is far wider than the photo's aspect). */
+.rope-photo { width: 100%; height: 100%; object-fit: cover; object-position: center 53%; display: block; }
+/* Inner (frayed) edge is anchored near the centre with a fixed, modest
+   overlap — independent of width, so making the rope longer extends
+   the outer/plain end outward instead of piling more rope on top of
+   the other one in the middle. */
+/* rope-keyed.png is frayed at both ends, so mirroring the left copy
+   keeps the two bars symmetric around the centre; if a differently-
+   oriented photo ever replaces it, re-check which side (if any) needs
+   the flip. */
+.rope-pull-left { right: 42%; animation-name: ropePullLeft; }
+.rope-pull-left .rope-photo { transform: scaleX(-1); }
+.rope-pull-right { left: 42%; animation-name: ropePullRight; }
+@keyframes ropePullLeft { 85% { opacity: 1; } to { transform: translateY(-50%) translateX(-70vw); opacity: 0; } }
+@keyframes ropePullRight { 85% { opacity: 1; } to { transform: translateY(-50%) translateX(70vw); opacity: 0; } }
+
+.hero2-sub {
+  font-size: 17px; font-weight: 300; line-height: 1.65; letter-spacing: 0.01em;
+  color: rgba(237, 242, 250, 0.68); max-width: 560px; margin: 0 auto 34px;
+}
+.hero2-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.hero2-btn-ghost {
+  background: rgba(237, 242, 250, 0.06); color: var(--cream);
+  border: 1px solid rgba(237, 242, 250, 0.18);
+}
+.hero2-btn-ghost:hover { background: rgba(237, 242, 250, 0.12); }
+.hero2-fade {
+  position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  background: linear-gradient(0deg, var(--ink) 0%, transparent 16%, transparent 84%, rgba(19, 30, 15, 0.75) 100%);
+}
+
+@media (max-width: 640px) {
+  .hero2 { padding-block: 118px 70px; min-height: 88vh; }
+  .shape-1 { width: 280px; height: 74px; }
+  .shape-2 { width: 240px; height: 64px; }
+  .shape-4, .shape-5 { display: none; }
+}
+
+.wa-ic { flex-shrink: 0; }
+
+/* Ticker marquee */
+/* Standalone band sitting between the hero and About. Solid edge to edge —
+   the fade is on pseudo-elements so only the moving text softens, not the
+   band itself (a masked background would leave pale gaps at both ends). */
+.ticker {
+  position: relative; z-index: 2;
+  background: var(--ink);
+  overflow: hidden; padding-block: 15px;
+}
+.ticker::before, .ticker::after {
+  content: ''; position: absolute; top: 0; bottom: 0;
+  width: clamp(40px, 10vw, 120px); z-index: 2; pointer-events: none;
+}
+.ticker::before { left: 0; background: linear-gradient(90deg, var(--ink), transparent); }
+.ticker::after { right: 0; background: linear-gradient(270deg, var(--ink), transparent); }
+.ticker-track {
+  display: flex; gap: 44px; width: max-content;
+  animation: ticker 30s linear infinite;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+.ticker-item {
+  color: rgba(237, 242, 250, 0.75); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap;
+  display: flex; align-items: center; gap: 44px;
+}
+.ticker-item::after { content: '◆'; font-size: 8px; color: var(--terra); }
+
+/* ── Layout helpers ── */
+.two-col { display: grid; grid-template-columns: 1fr 430px; gap: 72px; align-items: start; }
+.section-header { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.section-header .body { margin-inline: auto; }
+
+/* ── About ── */
+.points { display: flex; flex-direction: column; gap: 18px; padding-top: 16px; }
+.point { display: flex; gap: 14px; align-items: flex-start; }
+.point-ic {
+  width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px;
+  background: var(--sky); display: grid; place-items: center; font-size: 19px;
+  transition: transform 0.3s var(--ease);
+}
+.point:hover .point-ic { transform: rotate(-8deg) scale(1.1); }
+.point h3 { font-size: 17px; font-weight: 600; line-height: 1.35; }
+.point p { font-size: 15px; color: var(--muted); line-height: 1.55; }
+.about-media { position: relative; }
+.about-media:hover .about-video video { transform: scale(1.04); }
+.about-video video { transition: transform 0.8s var(--ease); }
+.about-badge {
+  position: absolute; bottom: -20px; inset-inline-start: -24px;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--ink); color: var(--cream);
+  padding: 14px 20px; border-radius: 14px; box-shadow: var(--shadow-lg);
+  font-size: 14.5px; font-weight: 600; max-width: 320px;
+}
+.badge-logo { width: 30px; height: 30px; border-radius: 50%; filter: brightness(0) invert(1); }
+/* Badge is now anchored to .about-media-grid (the video wrapper), not
+   .about-media itself — so this button's own margin can't drag the
+   badge's anchor point down with it. Badge hangs ~20px+its own height
+   past the video's bottom edge; this margin just needs to clear that. */
+.btn-meet-team {
+  margin-top: 48px; display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 13px 26px; border-radius: 999px; border: 1.5px solid var(--terra);
+  background: transparent; color: var(--terra); cursor: pointer;
+  touch-action: manipulation;
+  transition: background 0.25s, color 0.25s;
+}
+.btn-meet-team:hover { background: var(--terra); color: var(--cream); }
+.btn-meet-team:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; }
+.btn-meet-team svg { transition: transform 0.25s; }
+.btn-meet-team:hover svg { transform: translateX(3px); }
+
+/* ── Stats ── */
+.stats-section { padding-block: 0 96px; }
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+.stat {
+  border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s, border-color 0.4s;
+}
+.stat:hover { transform: translateY(-5px); border-color: var(--terra); box-shadow: 0 20px 40px -24px rgba(31,47,22,0.3); }
+.stat-num {
+  font-family: var(--serif); font-weight: 600; font-size: 44px;
+  line-height: 1.05; color: var(--terra); font-variant-numeric: tabular-nums;
+  display: flex; align-items: baseline; gap: 1px;
+}
+/* Sized down and set in the sans face so it reads as a qualifier
+   on the figure, not as another digit. */
+.stat-suffix {
+  font-family: var(--sans); font-size: 0.55em; font-weight: 700;
+  color: var(--slate); line-height: 1;
+}
+.stat p { font-size: 15px; font-weight: 500; color: var(--muted); margin-top: 6px; }
+
+/* ═══════════ PRODUCTS — structure cloned from malik-enterprise.vercel.app,
+   recoloured into this site's palette (their warm brown/cream swapped for
+   our green/slate/steel, per the standing "match our palette" instruction).
+   Two tiers exactly like theirs: a 4-up "Featured Products" row of tall
+   gradient flip cards, then a "More Products" catalog of compact gradient
+   flip cards behind pill tabs. ═══════════ */
+.products { background: var(--sand); }
+
+/* Left-aligned section head, exactly the reference's composition:
+   mono eyebrow → rope bar → mono title → body line. */
+.products-head { max-width: 640px; }
+.products-eyebrow {
+  font-family: var(--sans);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--slate); margin-bottom: 12px;
+}
+
+/* Small decorative rope bar under the eyebrow — their exact metrics
+   (52×4, radius 2, left-aligned), our colours. */
+.rope-bar {
+  width: 52px; height: 4px; border-radius: 2px; margin: 0 0 24px;
+  background: linear-gradient(90deg, var(--terra), var(--steel), var(--terra));
+}
+/* Was the Malik-clone mono face; now inherits the site serif from
+   .heading so the products section speaks the same voice as the rest
+   of the page (user request: one font system everywhere). */
+.heading-mono { letter-spacing: -0.01em; }
+
+/* Featured grid: 4 equal columns (their .products-grid) */
+/* Featured row is a swipeable carousel: 3 cards per view (2 at tablet,
+   1 at phone), paged by the dots below. Scrollbar hidden — the dots and
+   swipe are the affordance. Cards keep a fixed height; width comes from
+   the per-view flex-basis math (100% minus the visible gaps). */
+.products-grid {
+  display: flex; gap: 32px; margin-top: 56px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.products-grid::-webkit-scrollbar { display: none; }
+.products-grid .pcard { flex: 0 0 calc((100% - 64px) / 3); scroll-snap-align: start; }
+
+/* View More Products → opens the catalog modal (their .btn-view-all) */
+.btn-view-all {
+  display: flex; align-items: center; gap: 10px; margin: 44px auto 0;
+  font-family: var(--sans); font-size: 13.5px; font-weight: 600;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 14px 35px; border-radius: 8px; border: none;
+  background: var(--terra); color: var(--cream); cursor: pointer;
+  box-shadow: 0 4px 18px rgba(57, 91, 80, 0.28);
+  touch-action: manipulation;
+  transition: background 0.25s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s;
+}
+.btn-view-all:hover { background: var(--terra-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(57, 91, 80, 0.4); }
+.btn-view-all:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; }
+
+/* Flip mechanics (shared by both card tiers) */
+.flip-card { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.pcard { height: 404px; }
+.ccard { height: 285px; }
+.flip-card:focus-visible { outline: 3px solid var(--terra); outline-offset: 5px; border-radius: 22px; }
+.flip-inner {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d; transition: transform 0.8s var(--ease);
+}
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-card:not(.flipped):hover .flip-inner { transform: translateY(-6px) rotateY(0); }
+.flip-face {
+  position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
+}
+.ccard .flip-face { border-radius: 14px; }
+
+/* ── Featured card fronts: 3-stop 145° gradients, one per product,
+   same construction as their .product-card-front ── */
+.flip-front { padding: 28px; box-shadow: 0 4px 18px rgba(31, 47, 22, 0.18); transition: box-shadow 0.4s; }
+.flip-card:not(.flipped):hover .flip-front { box-shadow: 0 24px 48px -18px rgba(31, 47, 22, 0.45); }
+.pf-resham               { background: linear-gradient(145deg, #232B3D 0%, #4A5A7A 55%, #92AFD7 100%); }
+.pf-cottonNiwar          { background: linear-gradient(145deg, #16210F 0%, #2A463C 55%, #3E6155 100%); }
+.pf-plasticNiwar         { background: linear-gradient(145deg, #131F3A 0%, #2A4372 55%, #5478A8 100%); }
+.pf-reshamWhiteTipkiBall { background: linear-gradient(145deg, #23272E 0%, #464E5C 55%, #8B96A8 100%); }
+.product-badge {
+  align-self: flex-start; margin-bottom: 14px;
+  font-size: 9.6px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--sky); background: rgba(197, 209, 235, 0.15);
+  border: 1px solid rgba(197, 209, 235, 0.45);
+  border-radius: 100px; padding: 4px 10px;
+}
+.product-name {
+  font-family: var(--serif); font-size: 25px; font-weight: 700;
+  letter-spacing: -0.01em; color: var(--cream); line-height: 1.22;
+}
+.product-desc { font-size: 13.9px; color: rgba(237, 242, 250, 0.7); line-height: 1.72; margin-top: 8px; }
+.product-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 12px; }
+.product-tag {
+  font-size: 10.7px; font-weight: 500; letter-spacing: 0.08em;
+  color: rgba(237, 242, 250, 0.75); background: rgba(237, 242, 250, 0.1);
+  border: 1px solid rgba(237, 242, 250, 0.14);
+  border-radius: 4px; padding: 3.5px 9.6px; white-space: nowrap;
+}
+/* The "+N" overflow chip on featured cards — same shape, quieter
+   fill and a dashed border so it reads as a count, not a brand. */
+.product-tag-more { background: transparent; border-style: dashed; color: rgba(237, 242, 250, 0.68); }
+.flip-hint {
+  margin-top: 14px; font-size: 9.9px; font-weight: 500;
+  letter-spacing: 0.13em; text-transform: uppercase; color: rgba(237, 242, 250, 0.7);
+  display: flex; align-items: center; gap: 6px;
+}
+.flip-hint::after { content: '→'; transition: transform 0.3s; }
+.flip-card:hover .flip-hint::after { transform: translateX(4px); }
+.pcard .flip-hint { margin-top: 14px; }
+.ccard .flip-hint { margin-top: auto; padding-top: 10px; font-size: 9px; }
+.ccard .product-tags ~ .flip-hint, .ccard .catalog-brands ~ .flip-hint { margin-top: 12px; }
+
+/* ── Catalog card fronts: darker 2-stop gradients keyed to material
+   family, compact type — their .catalog-card-front ── */
+.ccard .flip-front { padding: 18px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); }
+/* Per-product gradients — the reference gives every catalog card its
+   own hue (ccat-* classes there); same idea here across our cool
+   register: greens, teals, slates, blues, indigos, plums. Fallback
+   below covers any future product before it gets its own pair. */
+.ccard .flip-front { background: linear-gradient(145deg, #161F24 0%, #3C525E 100%); }
+.ccard .ccat-pp            { background: linear-gradient(145deg, #16242C 0%, #2F4A5C 100%); }
+.ccard .ccat-resham        { background: linear-gradient(145deg, #1D2438 0%, #3B4A6E 100%); }
+.ccard .ccat-cottonRope    { background: linear-gradient(145deg, #1E2A18 0%, #3A5230 100%); }
+.ccard .ccat-coir          { background: linear-gradient(145deg, #242912 0%, #4A5426 100%); }
+.ccard .ccat-jute          { background: linear-gradient(145deg, #262415 0%, #4C482A 100%); }
+.ccard .ccat-plasticRope   { background: linear-gradient(145deg, #10262A 0%, #1E4A52 100%); }
+.ccard .ccat-jari          { background: linear-gradient(145deg, #241A30 0%, #45335C 100%); }
+.ccard .ccat-nylonMohra    { background: linear-gradient(145deg, #0F2030 0%, #1F4260 100%); }
+.ccard .ccat-reshamMohra   { background: linear-gradient(145deg, #2A1A28 0%, #52334E 100%); }
+.ccard .ccat-gopDori       { background: linear-gradient(145deg, #0E2620 0%, #1C4A3E 100%); }
+.ccard .ccat-cottonNiwar   { background: linear-gradient(145deg, #16210F 0%, #2A463C 100%); }
+.ccard .ccat-plasticNiwar  { background: linear-gradient(145deg, #131F3A 0%, #2A4372 100%); }
+.ccard .ccat-juteTwine     { background: linear-gradient(145deg, #232012 0%, #464024 100%); }
+.ccard .ccat-rawJute       { background: linear-gradient(145deg, #201E10 0%, #403C20 100%); }
+.ccard .ccat-plasticSutli  { background: linear-gradient(145deg, #0E2833 0%, #1D5266 100%); }
+.ccard .ccat-petWire       { background: linear-gradient(145deg, #0F2A17 0%, #1F5230 100%); }
+.ccard .ccat-bagClosingThread { background: linear-gradient(145deg, #10202E 0%, #22425E 100%); }
+.ccard .ccat-nadaDori      { background: linear-gradient(145deg, #1C2616 0%, #38502E 100%); }
+.ccard .ccat-lineDori      { background: linear-gradient(145deg, #202433 0%, #414A66 100%); }
+.ccard .ccat-twine         { background: linear-gradient(145deg, #28210F 0%, #4E4220 100%); }
+.ccard .ccat-boundaryNet   { background: linear-gradient(145deg, #0D2B25 0%, #1B564C 100%); }
+.ccard .ccat-reshamWhiteTipkiBall   { background: linear-gradient(145deg, #23272E 0%, #464E5C 100%); }
+.ccard .ccat-reshamColorBall        { background: linear-gradient(145deg, #2B1430 0%, #56285E 100%); }
+.ccard .ccat-reshamFancyBall        { background: linear-gradient(145deg, #2E1820 0%, #5C3040 100%); }
+.ccard .ccat-cottonReshamSanedoVaan { background: linear-gradient(145deg, #14283A 0%, #295074 100%); }
+.ccard .ccat-blueCottonVaan         { background: linear-gradient(145deg, #101F42 0%, #203E84 100%); }
+.catalog-name {
+  font-family: var(--serif); font-size: 19px; font-weight: 700;
+  color: var(--cream); line-height: 1.22;
+}
+.catalog-sub { font-size: 11.4px; color: rgba(237, 242, 250, 0.66); margin-top: 4px; line-height: 1.5; }
+.catalog-brands { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 10px; }
+.catalog-brand {
+  font-size: 9.1px; font-weight: 600; letter-spacing: 0.04em;
+  color: var(--sky); background: rgba(146, 175, 215, 0.18);
+  border-radius: 4px; padding: 2.4px 7px; white-space: nowrap;
+}
+
+/* ══════════ CATALOG MODAL — full-screen dark overlay, the reference's
+   actual "More Products" surface (#catalog-modal there too):
+   header / tabs bar / scrollable body, stacked as a column. ══════════ */
+#catalog-modal {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(17, 25, 12, 0.97);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.32s ease;
+  overflow: hidden;
+}
+#catalog-modal.open { opacity: 1; pointer-events: all; }
+.catalog-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 26px 48px;
+  border-bottom: 1px solid rgba(237, 242, 250, 0.09);
+  flex-shrink: 0;
+}
+.catalog-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--steel); margin-bottom: 5px;
+}
+.catalog-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.6vw, 32px); font-weight: 700; letter-spacing: -0.01em;
+  color: var(--cream);
+}
+.catalog-close {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(237, 242, 250, 0.07);
+  border: 1px solid rgba(237, 242, 250, 0.14);
+  color: var(--cream); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  touch-action: manipulation;
+  transition: background 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.catalog-close:hover { background: rgba(237, 242, 250, 0.16); transform: rotate(90deg); }
+.catalog-close:focus-visible { outline: 3px solid var(--steel); outline-offset: 3px; }
+.catalog-tabs-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  padding: 18px 48px;
+  border-bottom: 1px solid rgba(237, 242, 250, 0.07);
+  flex-shrink: 0;
+}
+.tab {
+  font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  letter-spacing: 0.09em; text-transform: uppercase; white-space: nowrap;
+  color: rgba(237, 242, 250, 0.66); background: transparent;
+  border: 1px solid rgba(237, 242, 250, 0.15); border-radius: 100px;
+  padding: 10px 22px; touch-action: manipulation;
+  transition: background 0.22s, color 0.22s, border-color 0.22s;
+}
+.tab:hover { border-color: rgba(237, 242, 250, 0.4); color: var(--cream); }
+.tab.active { background: var(--terra); border-color: var(--terra); color: var(--cream); }
+.tab:focus-visible { outline-color: var(--steel); }
+.catalog-body { flex: 1; overflow-y: auto; padding: 40px 48px; overscroll-behavior: contain; }
+
+/* Catalog grid: their auto-fill minmax(220px, 1fr), 24px gap */
+.catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+
+/* ══════════ TEAM MODAL — same full-screen dark-overlay mechanics as
+   the catalog modal above (mirrors malik-enterprise's "Meet the
+   Faces" click-to-reveal), styled with its own class names since the
+   header/close-button anatomy only coincidentally matches. ══════════ */
+#team-modal {
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(17, 25, 12, 0.97);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.32s ease;
+  overflow: hidden;
+}
+#team-modal.open { opacity: 1; pointer-events: all; }
+.team-header {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+  padding: 26px 48px;
+  border-bottom: 1px solid rgba(237, 242, 250, 0.09);
+  flex-shrink: 0;
+}
+.team-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--steel); margin-bottom: 5px;
+}
+.team-title {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.6vw, 32px); font-weight: 700; letter-spacing: -0.01em;
+  color: var(--cream); margin-bottom: 8px;
+}
+.team-sub { font-size: 14.5px; color: rgba(237, 242, 250, 0.7); max-width: 480px; line-height: 1.6; }
+.team-close {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(237, 242, 250, 0.07);
+  border: 1px solid rgba(237, 242, 250, 0.14);
+  color: var(--cream); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  touch-action: manipulation;
+  transition: background 0.2s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.team-close:hover { background: rgba(237, 242, 250, 0.16); transform: rotate(90deg); }
+.team-close:focus-visible { outline: 3px solid var(--steel); outline-offset: 3px; }
+/* Centering comes from the grid's margin:auto, NOT align-items/justify-
+   content on this flex container — container-level centering pushes
+   overflowing content above the scroll origin where it can never be
+   scrolled to (hit on mobile: 3 stacked 300px photos ≈ 1050px in a
+   ~600px body left rank 1 cut off). Auto margins center when content
+   fits and gracefully top-align + scroll when it doesn't. */
+.team-body { flex: 1; overflow-y: auto; padding: 56px 48px; overscroll-behavior: contain; display: flex; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 960px; width: 100%; align-items: start; margin: auto; }
+.team-card { text-align: center; }
+/* Podium arrangement: Aziz (1st) centre and highest, Moiz (2nd) left
+   one step down, Kadir (3rd) right two steps down — like a medal
+   podium. DOM stays in rank order 1-2-3 (correct for screen readers
+   and the mobile single-column stack); `order` only rearranges the
+   desktop columns, and the stagger comes from pushing the lower ranks
+   DOWN (margin-top) rather than lifting rank 1 up, so nothing can
+   poke above the scroll container and get clipped. */
+.team-card:nth-child(1) { order: 2; }
+.team-card:nth-child(2) { order: 1; margin-top: 34px; }
+.team-card:nth-child(3) { order: 3; margin-top: 68px; }
+/* Large 1:1 photos (per user request — "bigger, 1:1 types"), one per
+   column so each lands ~290px square at desktop. Source photos are
+   portrait headshots (~0.75-0.8 ratio) with the face in the upper
+   third; the top-biased cover-crop keeps cap + face framed instead of
+   a centre-crop pushing the face out the top. */
+.team-photo {
+  display: block; width: 100%; aspect-ratio: 1 / 1;
+  object-fit: cover; object-position: center 18%;
+  border-radius: 18px; margin-bottom: 20px;
+  border: 3px solid var(--terra);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.team-ph-2 { border-color: var(--steel); }
+.team-ph-3 { border-color: var(--sky); }
+.team-name { font-family: var(--serif); font-size: 23px; font-weight: 700; color: var(--cream); margin-bottom: 5px; }
+.team-role { font-size: 14px; color: rgba(237, 242, 250, 0.68); letter-spacing: 0.02em; }
+
+/* Small decorative dots on the main page only, between the featured
+   grid and "View More Products" — a quiet hint that the shelf goes
+   deeper than the four cards shown, without a second row of fake
+   cards. Three dots growing + brightening left→right. Left-aligned,
+   not centered — matches the button and the rest of this section's
+   text, which are all left-aligned, not centered on the page. */
+/* Carousel dots — one per page of the featured carousel, generated by
+   setupCarousel() in app.js (count adapts to cards-per-view, so 2 at
+   desktop, 3 at tablet, 4 at phone). Small painted dot, enlarged tap
+   area via ::after; the active dot stretches into a pill. */
+.carousel-dots { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 36px; }
+.carousel-dot {
+  position: relative; width: 11px; height: 11px; padding: 0;
+  border: none; border-radius: 100px; cursor: pointer;
+  background: var(--steel); opacity: 0.45;
+  touch-action: manipulation;
+  transition: opacity 0.25s, background 0.25s, width 0.3s var(--ease);
+}
+.carousel-dot::after { content: ""; position: absolute; inset: -12px; }
+.carousel-dot:hover { opacity: 0.8; }
+.carousel-dot.active { background: var(--terra); opacity: 1; width: 30px; }
+.carousel-dot:focus-visible { outline: 3px solid var(--terra); outline-offset: 4px; }
+
+/* ── Card backs (shared): photo + shade + name + WhatsApp, as theirs ── */
+.flip-back { transform: rotateY(180deg); background: var(--ink); }
+.flip-back img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.flip-back-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(31,47,22,0.15) 30%, rgba(31,47,22,0.88) 100%);
+}
+.flip-back-content {
+  position: relative; margin-top: auto; padding: 22px;
+  display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+}
+.ccard .flip-back-content { padding: 14px; gap: 8px; }
+.flip-back-content h3 { font-family: var(--serif); font-weight: 700; font-size: 23px; color: var(--cream); line-height: 1.2; }
+.ccard .flip-back-content h3 { font-size: 14px; }
+.enquire-wa {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--wa); color: #fff; font-size: 12.5px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 10px 16px; border-radius: 100px; transition: background 0.3s, transform 0.3s;
+}
+.ccard .enquire-wa { font-size: 10.5px; padding: 8px 12px; }
+.enquire-wa:hover { background: var(--wa-deep); transform: translateY(-2px); }
+.back-hint { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(237, 242, 250, 0.65); }
+.ccard .back-hint { font-size: 9px; }
+
+/* In-house corner badge (kept from our own requirements) */
+.inhouse-badge {
+  position: absolute; top: 12px; inset-inline-end: 12px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #1F2F16; background: var(--sky);
+  padding: 4px 9px; border-radius: 100px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+.inhouse-badge::before { content: '🏭'; font-size: 10px; }
+
+/* Placeholder-photo ribbon (kept — one product still awaits its photo) */
+.photo-soon {
+  position: absolute; top: 14px; inset-inline-start: 14px; z-index: 2;
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: #1F2F16; background: rgba(237, 242, 250, 0.92);
+  padding: 5px 10px; border-radius: 100px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ── Band ── */
+.band { background: var(--ink); }
+.band-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.band-card {
+  padding: 34px; border-radius: 18px;
+  background: rgba(237, 242, 250, 0.06); border: 1px solid rgba(237, 242, 250, 0.14);
+  transition: background 0.4s, transform 0.4s var(--ease);
+}
+.band-card:hover { background: rgba(237, 242, 250, 0.1); transform: translateY(-4px); }
+.band-ic {
+  width: 48px; height: 48px; border-radius: 14px; font-size: 22px;
+  background: rgba(146, 175, 215, 0.22); display: grid; place-items: center; margin-bottom: 16px;
+}
+.band-card h3 { font-family: var(--serif); font-weight: 600; font-size: 26px; color: var(--cream); margin-bottom: 10px; }
+.band-card p { color: rgba(237, 242, 250, 0.75); font-size: 16px; }
+.band-addr { margin-top: 14px; color: #92AFD7 !important; font-weight: 600; font-size: 14px !important; }
+
+/* ── Why Us + Testimonials combined section ── */
+.whyus-testi { background: var(--paper); }
+.whyus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 80px; }
+.whyus-card {
+  background: var(--sand); border-radius: 16px; padding: 28px 24px;
+  border: 1px solid var(--line);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s;
+}
+.whyus-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -20px rgba(31, 47, 22, 0.25); }
+.whyus-ic {
+  width: 46px; height: 46px; border-radius: 13px; font-size: 20px;
+  background: var(--sky); display: grid; place-items: center; margin-bottom: 14px;
+}
+.whyus-card h3 { font-size: 17px; font-weight: 600; line-height: 1.3; margin-bottom: 8px; }
+.whyus-card p { font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+.testi-wrap { padding-top: 0; }
+
+/* ── About media (video) ── */
+.about-media-grid { position: relative; display: grid; grid-template-columns: 1fr; }
+.about-video { border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 9; }
+.about-video video { width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Testimonials: infinite marquee ── */
+.testi-marquee { position: relative; overflow: hidden; padding-block: 8px; }
+.testi-marquee::before, .testi-marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: clamp(48px, 16vw, 200px);
+  z-index: 1; pointer-events: none;
+}
+.testi-marquee::before { left: 0; background: linear-gradient(90deg, var(--paper), transparent); }
+.testi-marquee::after { right: 0; background: linear-gradient(270deg, var(--paper), transparent); }
+.testi-track {
+  display: flex; width: max-content;
+  animation: testiMarquee 22s linear infinite;
+}
+.testi-marquee:hover .testi-track { animation-play-state: paused; }
+@keyframes testiMarquee { to { transform: translateX(-50%); } }
+.testi-set { display: flex; gap: 24px; padding-inline-end: 24px; }
+.testi-card {
+  background: var(--sand); border-radius: 16px; padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  width: 320px; flex-shrink: 0;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s;
+}
+.testi-card:hover { transform: translateY(-5px) rotate(-0.5deg); box-shadow: 0 24px 48px -24px rgba(31, 47, 22, 0.3); }
+.stars { color: var(--terra); font-size: 14px; letter-spacing: 3px; }
+.stars-empty { color: rgba(31, 47, 22, 0.18); }
+.rating-badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
+.rating-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 15px; border-radius: 100px;
+  background: var(--sky); border: 1px solid var(--line);
+  font-size: 13.5px; font-weight: 600; color: #35505B;
+}
+.rating-star { color: var(--terra); }
+.testi-quote { font-size: 15.5px; color: var(--ink); }
+.testi-name { font-weight: 600; font-size: 15.5px; margin-top: auto; }
+.testi-role { font-size: 13.5px; color: var(--muted); }
+
+/* ── Contact ── */
+.contact { background: var(--sand); }
+.contact-cols { grid-template-columns: 1fr 460px; }
+.c-rows { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+.c-row { display: flex; align-items: center; gap: 14px; transition: transform 0.3s var(--ease); }
+.c-row:hover { transform: translateX(4px); }
+.c-ic {
+  width: 44px; height: 44px; border-radius: 12px; font-size: 18px;
+  background: var(--sky); display: grid; place-items: center; flex-shrink: 0;
+}
+.c-label { font-size: 13.5px; color: var(--muted); }
+.c-value { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.addr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-top: 22px; }
+/* Address cards are links out to Google Maps */
+.addr-card {
+  display: block; background: var(--paper); border-radius: 14px; padding: 20px 22px;
+  border: 1px solid transparent;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s;
+}
+.addr-card:hover { transform: translateY(-3px); border-color: var(--terra); box-shadow: 0 14px 30px -18px rgba(31, 47, 22, 0.35); }
+.addr-card:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; }
+.addr-card h3 { font-size: 15px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.addr-card p { font-size: 14.5px; color: var(--muted); margin-top: 8px; }
+.form-card {
+  background: var(--paper); border-radius: 18px; padding: 34px;
+  box-shadow: var(--shadow-lg);
+}
+.form-title { font-family: var(--serif); font-weight: 600; font-size: 26px; }
+.form-note-top { font-size: 13.5px; color: var(--muted); margin: 8px 0 20px; }
+.form-card label { display: block; margin-bottom: 16px; font-size: 13px; font-weight: 600; }
+.form-card label span { display: block; margin-bottom: 8px; }
+.form-card input, .form-card textarea {
+  width: 100%; font-family: inherit; font-size: 15px; color: var(--ink);
+  background: #F7FAFE; border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; outline: none; resize: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-card input:focus, .form-card textarea:focus {
+  border-color: var(--terra); box-shadow: 0 0 0 3px rgba(57, 91, 80, 0.12);
+}
+.form-card ::placeholder { color: rgba(69, 96, 108, 0.55); }
+.form-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+.form-note { font-size: 13px; color: var(--muted); margin-top: 16px; }
+
+/* ── Footer ── */
+.footer { background: var(--ink); color: var(--cream); padding: 64px 0 36px; }
+.footer-top {
+  display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  padding-bottom: 44px;
+}
+.fb-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.footer-logo { width: 36px; height: 36px; border-radius: 50%; filter: brightness(0) invert(1); }
+.footer-brand p { color: rgba(237, 242, 250, 0.65); font-size: 14.5px; max-width: 420px; }
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
+.footer-col h4 {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(237, 242, 250, 0.66); margin-bottom: 4px;
+}
+.footer-col a { color: rgba(237, 242, 250, 0.8); font-size: 14.5px; transition: color 0.25s; }
+.footer-col a:hover { color: var(--terra); }
+.footer-bottom {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+  padding-top: 22px; border-top: 1px solid rgba(237, 242, 250, 0.14);
+}
+.footer-bottom p { font-size: 13px; color: rgba(237, 242, 250, 0.68); }
+
+/* ── Floating WhatsApp ── */
+.wa-float {
+  position: fixed; bottom: 26px; inset-inline-end: 26px; z-index: 60;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--wa); color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 12px 30px -8px rgba(30, 169, 82, 0.6);
+  transition: transform 0.3s var(--ease), background 0.3s;
+  animation: waPulse 2.6s ease-out infinite;
+}
+.wa-float:hover { transform: scale(1.12) rotate(6deg); background: var(--wa-deep); animation: none; }
+@keyframes waPulse {
+  0% { box-shadow: 0 12px 30px -8px rgba(30,169,82,0.6), 0 0 0 0 rgba(30,169,82,0.45); }
+  70% { box-shadow: 0 12px 30px -8px rgba(30,169,82,0.6), 0 0 0 18px rgba(30,169,82,0); }
+  100% { box-shadow: 0 12px 30px -8px rgba(30,169,82,0.6), 0 0 0 0 rgba(30,169,82,0); }
+}
+
+/* ── Scroll reveal ── */
+/* Scroll reveal: a short rise + focus-pull (blur→sharp) rather than the
+   generic long fade-up — the blur is what makes it read as deliberate.
+   Blur clears faster than the rise settles, so text is readable early. */
+.reveal {
+  opacity: 0; transform: translateY(14px); filter: blur(6px);
+  transition: opacity 0.7s var(--ease), transform 0.9s var(--ease), filter 0.55s ease-out;
+}
+.reveal.in { opacity: 1; transform: translateY(0); filter: blur(0); }
+/* The rope-bar draws itself in like a strand being laid — scaleX from
+   the left instead of the shared rise/blur (blur turns a 4px bar to mush). */
+.rope-bar.reveal { opacity: 0; transform: scaleX(0); filter: none; transform-origin: 0 50%; transition: opacity 0.4s ease, transform 1.1s var(--ease) 0.1s; }
+.rope-bar.reveal.in { opacity: 1; transform: scaleX(1); }
+/* Centred section heads get a centred bar that draws outward from
+   its middle rather than from the left edge. */
+.section-header .rope-bar { margin: 0 auto 24px; }
+.section-header .rope-bar.reveal { transform-origin: 50% 50%; }
+
+/* ── Scroll progress hairline: pure CSS scroll-driven animation.
+   Engines without scroll-timeline keep it at scaleX(0) — invisible,
+   zero JS, zero risk. ── */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0; height: 2.5px; z-index: 400;
+  background: linear-gradient(90deg, var(--terra), var(--steel));
+  transform-origin: 0 50%; transform: scaleX(0); pointer-events: none;
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-progress { animation: progressGrow linear both; animation-timeline: scroll(root); }
+}
+@keyframes progressGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* ── Stats strand: one rope line drawing itself across the band ── */
+.stats-section { position: relative; }
+.strand-draw {
+  position: absolute; left: 0; right: 0; top: 30%; width: 100%; height: 120px;
+  pointer-events: none;
+}
+.strand-draw path { stroke: var(--steel); stroke-width: 2.5; stroke-linecap: round; opacity: 0.35; }
+.strand-draw.reveal path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s; }
+.strand-draw.reveal.in path { stroke-dashoffset: 0; }
+
+/* ── Team modal: podium cards rise in rank order once the overlay
+   lands — 1st (centre) first, then 2nd, then 3rd. ── */
+#team-modal .team-card { opacity: 0; transform: translateY(18px); transition: opacity 0.5s var(--ease), transform 0.5s var(--ease); }
+#team-modal.open .team-card { opacity: 1; transform: none; }
+#team-modal.open .team-card:nth-child(1) { transition-delay: 0.12s; }
+#team-modal.open .team-card:nth-child(2) { transition-delay: 0.26s; }
+#team-modal.open .team-card:nth-child(3) { transition-delay: 0.4s; }
+
+/* ── Card sheen: a faint light band sweeps across a product card's
+   front on hover — specular, quiet, transform-only. ── */
+.flip-front::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(237, 242, 250, 0.07) 50%, transparent 58%);
+  transform: translateX(-130%);
+}
+.flip-card:not(.flipped):hover .flip-front::after { transform: translateX(130%); transition: transform 1s var(--ease); }
+
+/* ── WhatsApp float: one soft ring ping every 9s ── */
+.wa-float::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid var(--wa); pointer-events: none;
+  animation: waPing 9s cubic-bezier(0.16, 1, 0.3, 1) 4s infinite;
+}
+@keyframes waPing {
+  0% { transform: scale(1); opacity: 0.55; }
+  13% { transform: scale(1.65); opacity: 0; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+.lang-fade { animation: langFade 0.45s var(--ease); }
+@keyframes langFade { from { opacity: 0.2; transform: translateY(6px); } }
+
+/* ── RTL ── */
+
+/* ── Responsive ── */
+@media (max-width: 980px) {
+  .two-col { grid-template-columns: 1fr; gap: 48px; }
+  .contact-cols { grid-template-columns: 1fr; }
+  .about-media { max-width: 480px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .whyus-grid { grid-template-columns: repeat(2, 1fr); }
+  .products-grid .pcard { flex-basis: calc((100% - 32px) / 2); }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  /* Always rendered (flex) in the mobile range so the opacity
+     transition can run; visibility is gated by opacity/pointer-events. */
+  .nav-mobile { display: flex; }
+  .section { padding-block: 90px; }
+}
+@media (max-width: 640px) {
+  .wrap { padding-inline: 20px; }
+  .section { padding-block: 72px; }
+  .hero-content { padding: 130px 20px 120px; }
+  /* Phone gets its own stats layout, not the desktop one squeezed:
+     the lead stat (22+ years) rides full-width, the rest pair up in a
+     compact 2×2 — instead of five identical full-width cards. */
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .stat { padding: 18px 16px; }
+  .stat:first-child { grid-column: span 2; }
+  .stat-num { font-size: 34px; }
+  .stat p { font-size: 13px; line-height: 1.45; }
+  .whyus-grid { grid-template-columns: 1fr; }
+  .products-grid .pcard { flex-basis: 100%; }
+  .catalog-header { padding: 20px 24px; }
+  .catalog-tabs-bar { padding: 14px 24px; }
+  .catalog-body { padding: 24px; }
+  .team-header { padding: 20px 24px; }
+  .team-body { padding: 40px 24px; }
+  .team-grid { grid-template-columns: 1fr; max-width: 300px; gap: 36px; }
+  /* Single column: back to plain rank-order stack, no podium stagger */
+  .team-card:nth-child(2), .team-card:nth-child(3) { margin-top: 0; }
+  .team-card:nth-child(1), .team-card:nth-child(2), .team-card:nth-child(3) { order: 0; }
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
+  /* Theirs drops to 220px here, but our brand-chip lists run longer
+     (Plastic Niwar carries 11) — measured against the real 2-column
+     width at a 375px phone (not just the 640px breakpoint edge),
+     Plastic Niwar's English card needs ~359px; 370px keeps a safety
+     margin so every chip stays visible on real small phones. */
+  .ccard { height: 370px; }
+  .band-cards { grid-template-columns: 1fr; }
+  .addr-grid { grid-template-columns: 1fr; }
+  .form-card { padding: 26px 22px; }
+  .nav-cta { display: none; }
+  .nav-row { padding: 10px 20px; }
+  .brand-name { font-size: 22px; }
+  .about-badge { inset-inline-start: 0; max-width: 90%; }
+  .footer-top { flex-direction: column; }
+  .wa-float { bottom: 20px; inset-inline-end: 20px; width: 54px; height: 54px; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; filter: none; }
+  .testi-track { animation: none; }
+  .testi-marquee { overflow-x: auto; }
+  /* Near-zero animation-duration would pin the scroll-linked bar at
+     full width and keep the ping ring frozen — hide both outright. */
+  .scroll-progress { display: none; }
+  .wa-float::after { display: none; }
+  .strand-draw path { stroke-dashoffset: 0; }
+}

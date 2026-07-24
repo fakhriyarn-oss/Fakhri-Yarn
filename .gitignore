@@ -1,0 +1,19 @@
+# ── Raw source files (kept locally, not part of the deployed site) ──
+# These un-processed originals live in the project root. The website
+# references the optimised copies in assets/ instead, so they are
+# excluded to keep the repo lean and under GitHub's file-size limits
+# (the original Bekhusiwala.mp4 is ~104 MB — over GitHub's 100 MB cap).
+/*.png
+/*.jpg
+/*.jpeg
+/*.mp4
+/*.webp
+
+# ── OS / editor cruft ──
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.vscode/
+.idea/
