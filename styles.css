@@ -116,7 +116,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand-logo { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-.brand-name { font-family: var(--serif); font-weight: 700; font-size: 26px; line-height: 1; }
+.brand-name { font-family: var(--serif); font-weight: 700; font-size: 26px; line-height: 1; white-space: nowrap; }
 .brand-name.light { color: var(--cream); }
 .nav-links { display: flex; gap: 8px; }
 .nav-link {
@@ -597,7 +597,12 @@ button { font-family: inherit; cursor: pointer; }
 }
 .flip-hint::after { content: '→'; transition: transform 0.3s; }
 .flip-card:hover .flip-hint::after { transform: translateX(4px); }
-.pcard .flip-hint { margin-top: 14px; }
+/* Pin the hint to the card's bottom edge so it lands at the same
+   height on every featured card, with or without brand chips. When
+   chips ARE present (they carry margin-top:auto and sit at the bottom),
+   the hint tucks just under them instead. */
+.pcard .flip-hint { margin-top: auto; }
+.pcard .product-tags ~ .flip-hint { margin-top: 14px; }
 .ccard .flip-hint { margin-top: auto; padding-top: 10px; font-size: 9px; }
 .ccard .product-tags ~ .flip-hint, .ccard .catalog-brands ~ .flip-hint { margin-top: 12px; }
 
@@ -1136,9 +1141,20 @@ button { font-family: inherit; cursor: pointer; }
   .addr-grid { grid-template-columns: 1fr; }
   .form-card { padding: 26px 22px; }
   .nav-cta { display: none; }
-  .nav-row { padding: 10px 20px; }
-  .brand-name { font-size: 22px; }
-  .about-badge { inset-inline-start: 0; max-width: 90%; }
+  /* Tight nav so the full "Fakhri Yarn" wordmark always fits beside the
+     language pills + burger on narrow phones. brand:flex-shrink:0 means
+     the name keeps its space and can never be overlapped by its own
+     shrinking container again; the pills give up their AAA-width padding
+     (still well over the 24px AA touch minimum) to make the room. */
+  .nav-row { padding: 10px 13px; gap: 9px; }
+  .brand { flex-shrink: 0; gap: 7px; }
+  .brand-logo { width: 32px; height: 32px; }
+  .brand-name { font-size: 19px; }
+  .lang-pills { gap: 3px; padding: 3px; }
+  .lang-pill { padding: 9px 8px; min-width: 33px; min-height: 40px; font-size: 12.5px; }
+  /* Slimmer badge on phones so it covers less of the factory video. */
+  .about-badge { inset-inline-start: 0; max-width: 72%; padding: 9px 13px; gap: 8px; font-size: 11.5px; border-radius: 11px; bottom: -14px; }
+  .about-badge .badge-logo { width: 22px; height: 22px; }
   .footer-top { flex-direction: column; }
   .wa-float { bottom: 20px; inset-inline-end: 20px; width: 54px; height: 54px; }
 }
