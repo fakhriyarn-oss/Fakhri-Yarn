@@ -445,5 +445,15 @@
 
   <script src="i18n.js?v=25"></script>
   <script src="app.js?v=25"></script>
+
+  <!-- Vercel Web Analytics. Activates automatically once this site is
+       deployed on Vercel with Web Analytics enabled; the script is
+       served from Vercel's own edge at that path. Anywhere else (local
+       preview, other hosts) it simply 404s and does nothing — no error
+       that affects the page. Privacy-friendly: no cookies, no banner. -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
