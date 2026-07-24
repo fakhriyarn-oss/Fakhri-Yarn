@@ -970,13 +970,12 @@ button { font-family: inherit; cursor: pointer; }
 .c-value { font-size: 17px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .addr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding-top: 22px; }
 /* Address cards are links out to Google Maps */
+/* Static info panel (no longer a Google-Maps link) — no hover lift or
+   focus ring, so it doesn't read as clickable. */
 .addr-card {
   display: block; background: var(--paper); border-radius: 14px; padding: 20px 22px;
-  border: 1px solid transparent;
-  transition: transform 0.3s var(--ease), box-shadow 0.3s, border-color 0.3s;
+  border: 1px solid var(--line);
 }
-.addr-card:hover { transform: translateY(-3px); border-color: var(--terra); box-shadow: 0 14px 30px -18px rgba(31, 47, 22, 0.35); }
-.addr-card:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; }
 .addr-card h3 { font-size: 15px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
 .addr-card p { font-size: 14.5px; color: var(--muted); margin-top: 8px; }
 .form-card {
