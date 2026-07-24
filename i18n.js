@@ -72,8 +72,8 @@ const I18N = {
     "footer.copy": "© 2026 Fakhri Yarn, Dahod. All rights reserved.", "footer.made": "Handmade in Dahod since 2004",
     "team.trigger": "Meet Our Team", "team.triggerAria": "Meet our team", "team.eyebrow": "Meet the Faces",
     "team.sub": "The family behind the business — still on the factory floor, still at the counter.", "team.close": "Close",
-    "team.nameAziz": "Aziz Bekhushi", "team.nameMoiz": "Moiz Bekhushi", "team.nameKadir": "AbdulKadir Bekhushi",
-    "team.aziz": "Founder & Chairman", "team.moiz": "Managing Director", "team.kadir": "CEO",
+    "team.nameAziz": "Aziz Bekhushi", "team.nameMoiz": "Moiz Bekhushi", "team.nameKadir": "AbdulKadir Bekhushi", "team.nameMustufa": "Mustufa Dalroti",
+    "team.aziz": "Founder & Chairman", "team.moiz": "Managing Director", "team.kadir": "CEO", "team.mustufa": "CFO",
     products: {
       pp: ["PP Ropes", "Lightweight, water-resistant polypropylene rope that floats — for packaging, farms and marine use"],
       resham: ["Resham Ropes (Silk)", "High-strength, UV-resistant synthetic — “resham” is the trade name for silk", "High-strength resham rope, twisted in-house on our own machines. UV-resistant, colour-fast and smooth to handle — the everyday choice for cots, canopies, decoration and load tying."],
@@ -186,8 +186,8 @@ const I18N = {
     "footer.copy": "© 2026 फ़ख़री यार्न, दाहोद। सभी अधिकार सुरक्षित।", "footer.made": "2004 से दाहोद में हाथों से बना",
     "team.trigger": "हमारी टीम से मिलें", "team.triggerAria": "हमारी टीम से मिलें", "team.eyebrow": "टीम से मिलिए",
     "team.sub": "कारोबार के पीछे का परिवार — आज भी फ़ैक्टरी में, आज भी काउंटर पर।", "team.close": "बंद करें",
-    "team.nameAziz": "अज़ीज़ बेखुशी", "team.nameMoiz": "मोइज़ बेखुशी", "team.nameKadir": "अब्दुल क़ादिर बेखुशी",
-    "team.aziz": "संस्थापक व चेयरमैन", "team.moiz": "प्रबंध निदेशक", "team.kadir": "सीईओ",
+    "team.nameAziz": "अज़ीज़ बेखुशी", "team.nameMoiz": "मोइज़ बेखुशी", "team.nameKadir": "अब्दुल क़ादिर बेखुशी", "team.nameMustufa": "मुस्तुफ़ा दलरोटी",
+    "team.aziz": "संस्थापक व चेयरमैन", "team.moiz": "प्रबंध निदेशक", "team.kadir": "सीईओ", "team.mustufa": "सीएफओ",
     products: {
       pp: ["पीपी रस्सियाँ", "हल्की, पानी-रोधी पॉलीप्रोपिलीन रस्सी जो तैरती है — पैकिंग, खेती और समुद्री उपयोग के लिए"],
       resham: ["रेशम रस्सियाँ (सिल्क)", "बेहद मज़बूत, धूप झेलने वाली सिंथेटिक — व्यापार में \"रेशम\" सिल्क को कहा जाता है", "हमारी अपनी मशीनों पर बटी बेहद मज़बूत रेशम रस्सी। धूप झेलने वाली, पक्के रंग और हाथ में मुलायम — खाट, शामियाना, सजावट और सामान बाँधने के लिए रोज़मर्रा की पसंद।"],
@@ -300,8 +300,8 @@ const I18N = {
     "footer.copy": "© 2026 ફખરી યાર્ન, દાહોદ. બધા હક્ક સુરક્ષિત.", "footer.made": "2004થી દાહોદમાં હાથે બનેલું",
     "team.trigger": "અમારી ટીમને મળો", "team.triggerAria": "અમારી ટીમને મળો", "team.eyebrow": "ટીમને મળીએ",
     "team.sub": "ધંધા પાછળનો પરિવાર — આજેય ફેક્ટરીમાં, આજેય કાઉન્ટરે.", "team.close": "બંધ કરો",
-    "team.nameAziz": "અઝીઝ બેખુશી", "team.nameMoiz": "મોઇઝ બેખુશી", "team.nameKadir": "અબ્દુલ કાદિર બેખુશી",
-    "team.aziz": "સ્થાપક અને ચેરમેન", "team.moiz": "મેનેજિંગ ડિરેક્ટર", "team.kadir": "સીઈઓ",
+    "team.nameAziz": "અઝીઝ બેખુશી", "team.nameMoiz": "મોઇઝ બેખુશી", "team.nameKadir": "અબ્દુલ કાદિર બેખુશી", "team.nameMustufa": "મુસ્તુફા દલરોટી",
+    "team.aziz": "સ્થાપક અને ચેરમેન", "team.moiz": "મેનેજિંગ ડિરેક્ટર", "team.kadir": "સીઈઓ", "team.mustufa": "સીએફઓ",
     products: {
       pp: ["પીપી દોરડાં", "હલકી, પાણીમાં ન બગડતી પોલિપ્રોપિલિન દોરી જે તરે છે — પેકિંગ, ખેતી અને દરિયાઈ ઉપયોગ માટે"],
       resham: ["રેશમ દોરડાં (સિલ્ક)", "ખૂબ મજબૂત, તડકો ઝીલે તેવી સિન્થેટિક — વેપારમાં \"રેશમ\" સિલ્કને કહેવાય છે", "અમારા પોતાના મશીનો પર ઘરે જ બટેલી ખૂબ મજબૂત રેશમ દોરી. તડકો ઝીલે તેવી, પાકા રંગની અને હાથમાં મુલાયમ — ખાટલા, મંડપ, સજાવટ અને સામાન બાંધવા માટે રોજિંદી પસંદ."],

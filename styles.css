@@ -765,18 +765,17 @@ button { font-family: inherit; cursor: pointer; }
    ~600px body left rank 1 cut off). Auto margins center when content
    fits and gracefully top-align + scroll when it doesn't. */
 .team-body { flex: 1; overflow-y: auto; padding: 56px 48px; overscroll-behavior: contain; display: flex; }
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; max-width: 960px; width: 100%; align-items: start; margin: auto; }
-.team-card { text-align: center; }
-/* Podium arrangement: Aziz (1st) centre and highest, Moiz (2nd) left
-   one step down, Kadir (3rd) right two steps down — like a medal
-   podium. DOM stays in rank order 1-2-3 (correct for screen readers
-   and the mobile single-column stack); `order` only rearranges the
-   desktop columns, and the stagger comes from pushing the lower ranks
-   DOWN (margin-top) rather than lifting rank 1 up, so nothing can
-   poke above the scroll container and get clipped. */
-.team-card:nth-child(1) { order: 2; }
-.team-card:nth-child(2) { order: 1; margin-top: 34px; }
-.team-card:nth-child(3) { order: 3; margin-top: 68px; }
+.team-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 44px 30px; max-width: 900px; width: 100%; align-items: start; margin: auto; }
+.team-card { text-align: center; grid-row: 2; }
+/* Org-chart arrangement: the founder-chairman (1st) sits alone and
+   centred on the top row; the three executives — MD / CEO / CFO — sit
+   level in a row below. DOM stays in rank order (correct for screen
+   readers and the phone stack); grid placement does the visual layout.
+   Each card spans 2 of the 6 columns so all four photos render equal. */
+.team-card:nth-child(1) { grid-row: 1; grid-column: 3 / 5; }
+.team-card:nth-child(2) { grid-column: 1 / 3; }
+.team-card:nth-child(3) { grid-column: 3 / 5; }
+.team-card:nth-child(4) { grid-column: 5 / 7; }
 /* Large 1:1 photos (per user request — "bigger, 1:1 types"), one per
    column so each lands ~290px square at desktop. Source photos are
    portrait headshots (~0.75-0.8 ratio) with the face in the upper
@@ -791,6 +790,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .team-ph-2 { border-color: var(--steel); }
 .team-ph-3 { border-color: var(--sky); }
+.team-ph-4 { border-color: var(--slate); }
 .team-name { font-family: var(--serif); font-size: 23px; font-weight: 700; color: var(--cream); margin-bottom: 5px; }
 .team-role { font-size: 14px; color: rgba(237, 242, 250, 0.68); letter-spacing: 0.02em; }
 
@@ -1087,6 +1087,7 @@ button { font-family: inherit; cursor: pointer; }
 #team-modal.open .team-card:nth-child(1) { transition-delay: 0.12s; }
 #team-modal.open .team-card:nth-child(2) { transition-delay: 0.26s; }
 #team-modal.open .team-card:nth-child(3) { transition-delay: 0.4s; }
+#team-modal.open .team-card:nth-child(4) { transition-delay: 0.54s; }
 
 /* ── Card sheen: a faint light band sweeps across a product card's
    front on hover — specular, quiet, transform-only. ── */
@@ -1121,6 +1122,11 @@ button { font-family: inherit; cursor: pointer; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .whyus-grid { grid-template-columns: repeat(2, 1fr); }
   .products-grid .pcard { flex-basis: calc((100% - 32px) / 2); }
+  /* Team: org-chart is too wide here — fall back to a clean 2×2
+     (founder + MD, then CEO + CFO); nth-child(n) resets the desktop
+     column/row spans so cards auto-flow. */
+  .team-grid { grid-template-columns: repeat(2, 1fr); max-width: 560px; gap: 40px 32px; }
+  .team-card:nth-child(n) { grid-column: auto; grid-row: auto; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
   /* Always rendered (flex) in the mobile range so the opacity
@@ -1147,10 +1153,9 @@ button { font-family: inherit; cursor: pointer; }
   .catalog-body { padding: 24px; }
   .team-header { padding: 20px 24px; }
   .team-body { padding: 40px 24px; }
-  .team-grid { grid-template-columns: 1fr; max-width: 300px; gap: 36px; }
-  /* Single column: back to plain rank-order stack, no podium stagger */
-  .team-card:nth-child(2), .team-card:nth-child(3) { margin-top: 0; }
-  .team-card:nth-child(1), .team-card:nth-child(2), .team-card:nth-child(3) { order: 0; }
+  .team-grid { grid-template-columns: 1fr; max-width: 300px; gap: 32px; }
+  /* Single column: all four stack in rank order (spans reset). */
+  .team-card:nth-child(n) { grid-column: auto; grid-row: auto; }
   .catalog-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
   /* Theirs drops to 220px here, but our brand-chip lists run longer
      (Plastic Niwar carries 11) — measured against the real 2-column
