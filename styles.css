@@ -642,6 +642,8 @@ button { font-family: inherit; cursor: pointer; }
 .ccard .ccat-reshamFancyBall        { background: linear-gradient(145deg, #2E1820 0%, #5C3040 100%); }
 .ccard .ccat-cottonReshamSanedoVaan { background: linear-gradient(145deg, #14283A 0%, #295074 100%); }
 .ccard .ccat-blueCottonVaan         { background: linear-gradient(145deg, #101F42 0%, #203E84 100%); }
+.ccard .ccat-polyesterThread        { background: linear-gradient(145deg, #1A2733 0%, #35566E 100%); }
+.ccard .ccat-cottonThread           { background: linear-gradient(145deg, #17251C 0%, #2E4C38 100%); }
 .catalog-name {
   font-family: var(--serif); font-size: 19px; font-weight: 700;
   color: var(--cream); line-height: 1.22;

@@ -32,7 +32,6 @@ const PRODUCTS = [
 
   // ── Others ──
   { key: "juteTwine",    group: "others", mat: "natural",   tex: "laid",  img: "assets/sutli-new.webp",          brands: [] },
-  { key: "rawJute",      group: "others", mat: "natural",   tex: "none",  img: "assets/raw-jute.webp",           brands: [] },
   { key: "plasticSutli", group: "others", mat: "synthetic", tex: "laid",  img: "assets/plastic-sutli.webp",      brands: ["APPLE", "VIRAT", "KANHA", "FAN", "NEXA"] },
   { key: "petWire",      group: "others", mat: "synthetic", tex: "none",  img: "assets/pet-wire.webp",           brands: ["9 PLY", "3 PLY WIRE", "PVC SINGLE WIRE"] },
   { key: "bagClosingThread", group: "others", mat: "synthetic", tex: "laid", img: "assets/bag-closing-thread.webp", brands: [], inHouse: true },
@@ -43,17 +42,22 @@ const PRODUCTS = [
 
   // ── Vaan (cot/khatlo-weaving cord & the resham balls it's wound from) ──
   { key: "reshamWhiteTipkiBall", group: "vaan", mat: "specialty", tex: "laid", img: "assets/resham-balls-new.webp",  brands: [], inHouse: true },
-  { key: "reshamColorBall",      group: "vaan", mat: "specialty", tex: "laid", img: "assets/resham-color-ball.webp", brands: [] },
-  { key: "reshamFancyBall",      group: "vaan", mat: "specialty", tex: "laid", img: "assets/resham-fancy-balls.webp", brands: [] },
+  { key: "reshamColorBall",      group: "vaan", mat: "specialty", tex: "laid", img: "assets/resham-color-ball.webp", brands: [], inHouse: true },
+  { key: "reshamFancyBall",      group: "vaan", mat: "specialty", tex: "laid", img: "assets/resham-fancy-balls.webp", brands: [], inHouse: true },
   { key: "cottonReshamSanedoVaan", group: "vaan", mat: "specialty", tex: "laid", img: "assets/sanedo-vaan.webp",     brands: [] },
   { key: "blueCottonVaan",       group: "vaan", mat: "natural",   tex: "laid", img: "assets/blue-cotton-vaan.webp",  brands: [] },
+
+  // ── Threads ──
+  { key: "polyesterThread", group: "threads", mat: "synthetic", tex: "laid", img: "assets/polyester-thread.webp", brands: ["GEMINI"] },
+  { key: "cottonThread",    group: "threads", mat: "natural",   tex: "laid", img: "assets/cotton-thread.webp",    brands: ["DIAMOND", "DOUBLE GHODA"] },
 ];
 
 const GROUPS = [
-  { key: "ropes",  gridId: "gridRopes",  tabKey: "products.tabRopes" },
-  { key: "niwars", gridId: "gridNiwars", tabKey: "products.tabNiwars" },
-  { key: "vaan",   gridId: "gridVaan",   tabKey: "products.tabVaan" },
-  { key: "others", gridId: "gridOthers", tabKey: "products.tabOthers" },
+  { key: "ropes",   gridId: "gridRopes",   tabKey: "products.tabRopes" },
+  { key: "niwars",  gridId: "gridNiwars",  tabKey: "products.tabNiwars" },
+  { key: "vaan",    gridId: "gridVaan",    tabKey: "products.tabVaan" },
+  { key: "threads", gridId: "gridThreads", tabKey: "products.tabThreads" },
+  { key: "others",  gridId: "gridOthers",  tabKey: "products.tabOthers" },
 ];
 
 let lang = localStorage.getItem("fy-lang") || "en";
