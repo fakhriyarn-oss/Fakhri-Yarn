@@ -397,7 +397,10 @@ const statObs = new IntersectionObserver(
   },
   { threshold: 0.5 }
 );
-document.querySelectorAll(".stat-num").forEach((el) => statObs.observe(el));
+/* A stat marked data-static (e.g. the founding year 2004) shows its
+   value outright — no count-up, since spinning a year from 0 reads
+   oddly. It carries data-current so paintStat renders it directly. */
+document.querySelectorAll(".stat-num:not([data-static])").forEach((el) => statObs.observe(el));
 
 /* ── Nav: shadow on scroll + scrollspy + burger ── */
 const nav = document.getElementById("nav");

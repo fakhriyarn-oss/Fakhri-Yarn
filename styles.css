@@ -998,6 +998,9 @@ button { font-family: inherit; cursor: pointer; }
 .form-card ::placeholder { color: rgba(69, 96, 108, 0.55); }
 .form-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
 .form-note { font-size: 13px; color: var(--muted); margin-top: 16px; }
+/* Quiet privacy reassurance under the send buttons — with a small lock. */
+.form-privacy { font-size: 12px; color: var(--slate); margin-top: 14px; line-height: 1.5; }
+.form-privacy::before { content: "🔒 "; }
 
 /* ── Footer ── */
 .footer { background: var(--ink); color: var(--cream); padding: 64px 0 36px; }
