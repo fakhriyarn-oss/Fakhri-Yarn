@@ -4,7 +4,7 @@ Website for **Fakhri Yarn** — a family-run rope, niwar (webbing tape) and twin
 business in Dahod, Gujarat, making and supplying since 2004. Retail counter and
 factory-direct wholesale.
 
-🔗 **Live site: [fakhriyarn.vercel.app](https://fakhriyarn.vercel.app/)**
+🔗 **Live site: [fakhriyarn.com](https://www.fakhriyarn.com/)**
 
 ## About the site
 
