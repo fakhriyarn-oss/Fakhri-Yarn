@@ -78,7 +78,7 @@ const I18N = {
     products: {
       pp: ["PP Ropes", "Lightweight, water-resistant polypropylene rope that floats — for packaging, farms and marine use"],
       resham: ["Resham Ropes (Silk)", "High-strength, UV-resistant synthetic — “resham” is the trade name for silk", "High-strength resham rope, twisted in-house on our own machines. UV-resistant, colour-fast and smooth to handle — the everyday choice for cots, canopies, decoration and load tying."],
-      cottonRope: ["Cotton Ropes", "Soft, breathable cotton rope for everyday tying, craft and household use"],
+      cottonRope: ["Cotton Ropes", "Soft, breathable cotton rope for macrame, craft, packaging and household use"],
       coir: ["Coir (Kathi Rassi)", "Rugged coconut-fibre rope, coarse and weather-hardy — a farm and garden staple"],
       jute: ["Jute Ropes", "Coarse natural jute rope for heavy tying and bundling, ½ inch to 4 inch"],
       plasticRope: ["Plastic Ropes", "All-purpose synthetic rope for tying and packing, 2 mm to 8 mm thick"],
@@ -195,7 +195,7 @@ const I18N = {
     products: {
       pp: ["पीपी रस्सियाँ", "हल्की, पानी-रोधी पॉलीप्रोपिलीन रस्सी जो तैरती है — पैकिंग, खेती और समुद्री उपयोग के लिए"],
       resham: ["रेशम रस्सियाँ (सिल्क)", "बेहद मज़बूत, धूप झेलने वाली सिंथेटिक — व्यापार में \"रेशम\" सिल्क को कहा जाता है", "हमारी अपनी मशीनों पर बटी बेहद मज़बूत रेशम रस्सी। धूप झेलने वाली, पक्के रंग और हाथ में मुलायम — खाट, शामियाना, सजावट और सामान बाँधने के लिए रोज़मर्रा की पसंद।"],
-      cottonRope: ["कॉटन रस्सियाँ", "रोज़मर्रा की बंधाई, शिल्प और घर के काम के लिए मुलायम, हवादार कॉटन रस्सी"],
+      cottonRope: ["कॉटन रस्सियाँ", "मैक्रामे, शिल्प, पैकिंग और घर के काम के लिए मुलायम, हवादार कॉटन रस्सी"],
       coir: ["कॉयर (काठी रस्सी)", "मज़बूत, खुरदरी नारियल रेशे की रस्सी — खेत और बगीचे के काम के लिए भरोसेमंद"],
       jute: ["जूट रस्सियाँ", "भारी बंधाई और पैकिंग के लिए मोटी जूट रस्सी, ½ इंच से 4 इंच तक"],
       plasticRope: ["प्लास्टिक रस्सियाँ", "बंधाई और पैकिंग के रोज़मर्रा के काम के लिए सिंथेटिक रस्सी, 2 मिमी से 8 मिमी मोटी"],
@@ -312,7 +312,7 @@ const I18N = {
     products: {
       pp: ["પીપી દોરડાં", "હલકી, પાણીમાં ન બગડતી પોલિપ્રોપિલિન દોરી જે તરે છે — પેકિંગ, ખેતી અને દરિયાઈ ઉપયોગ માટે"],
       resham: ["રેશમ દોરડાં (સિલ્ક)", "ખૂબ મજબૂત, તડકો ઝીલે તેવી સિન્થેટિક — વેપારમાં \"રેશમ\" સિલ્કને કહેવાય છે", "અમારા પોતાના મશીનો પર ઘરે જ બટેલી ખૂબ મજબૂત રેશમ દોરી. તડકો ઝીલે તેવી, પાકા રંગની અને હાથમાં મુલાયમ — ખાટલા, મંડપ, સજાવટ અને સામાન બાંધવા માટે રોજિંદી પસંદ."],
-      cottonRope: ["કોટન દોરડાં", "રોજિંદા બાંધવા, હસ્તકલા અને ઘરવપરાશ માટે નરમ, હવાદાર કોટન દોરડું"],
+      cottonRope: ["કોટન દોરડાં", "મેક્રમે, હસ્તકલા, પેકિંગ અને ઘરવપરાશ માટે નરમ, હવાદાર કોટન દોરડું"],
       coir: ["કાથી (કાઠી રસ્સી)", "મજબૂત, ખરબચડું નાળિયેર રેસાનું દોરડું — ખેતર અને બગીચાના કામ માટે ભરોસાપાત્ર"],
       jute: ["શણ દોરડાં", "ભારે બાંધવા અને પેકિંગ માટે જાડું શણ દોરડું, ½ ઇંચથી 4 ઇંચ સુધી"],
       plasticRope: ["પ્લાસ્ટિક દોરડાં", "બાંધવા અને પેકિંગના રોજિંદા કામ માટે સિન્થેટિક દોરડું, 2 મિમીથી 8 મિમી જાડું"],

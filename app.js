@@ -108,9 +108,12 @@ const FEATURED = ["resham", "cottonNiwar", "plasticNiwar", "reshamWhiteTipkiBall
 const WA_SVG = `<svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-.9-.3-1.6-.6-2.9-1.2-4.7-4.1-4.9-4.3-.1-.2-1.1-1.5-1.1-2.9s.7-2 .9-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.1.1.3 0 .4-.1.2-.1.3-.3.5l-.4.5c-.1.1-.3.3-.1.5.1.3.6 1 1.3 1.7.9.8 1.7 1.1 2 1.2.2.1.4.1.5-.1.2-.2.6-.7.8-1 .2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>`;
 
 function backFaceHTML(p, name, enName) {
+  // Alt text describes the photo AND carries a light manufacturer/location
+  // signal for image search — kept to one natural phrase, not a keyword list.
+  const alt = `${enName}${p.inHouse ? " manufactured" : " supplied"} by Fakhri Yarn, Dahod, Gujarat`;
   return `
       <div class="flip-face flip-back" inert>
-        <img src="${p.img}" alt="${enName}" loading="lazy">
+        <img src="${p.img}" alt="${alt}" loading="lazy">
         <div class="flip-back-shade"></div>
         ${p.placeholder ? `<span class="photo-soon">${t("products.photoSoon")}</span>` : ""}
         <div class="flip-back-content">
